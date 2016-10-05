@@ -1,4 +1,4 @@
-package com.github.jannled.heldenspiel;
+package entity;
 
 public class Monster {
 	int angrifswert;

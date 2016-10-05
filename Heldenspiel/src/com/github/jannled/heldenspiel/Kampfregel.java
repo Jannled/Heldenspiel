@@ -1,45 +1,70 @@
 package com.github.jannled.heldenspiel;
 
-public class Kampfregel {
-	
+import entity.Held;
+import entity.Monster;
+
+public class Kampfregel 
+{
 	Wuerfel wuerfel = new Wuerfel(6);
-	Monster monster = new Monster(10);
-	Held held = new Held("Hero", 10);
+	private Monster monster;
+	private Held held;
+	
+	public Kampfregel(Held held, Monster monster)
+	{
+		this.held = held;
+		this.monster = monster;
+	}
 	
 	public void kampf()
 	{
-		if(held.getLebenspunkte()<=0)
+		if(getHeld().getLebenspunkte()<=0)
 		{
 			System.out.println("Das Spiel ist nun vorbei. Der Held hat verloren!");
 			return;
 		}
 		
-		if(monster.lebenspunkte<=0)
+		if(getMonster().getLebenspunkte()<=0)
 		{
 			System.out.println("Das Spiel ist nun vorbei. Das Monster hat verloren!");
 			return;
 		}
 		
-		held.setAngrifswert(wuerfel.wuerfeln());
-		monster.setAngrifswert(wuerfel.wuerfeln());
-		if(held.getAngrifswert() > monster.getAngrifswert())
+		getHeld().setAngrifswert(wuerfel.wuerfeln());
+		getMonster().setAngrifswert(wuerfel.wuerfeln());
+		if(getHeld().getAngrifswert() > getMonster().getAngrifswert())
 		{
-			monster.setLebenspunkte(monster.getLebenspunkte()-1);
+			getMonster().setLebenspunkte(getMonster().getLebenspunkte()-1);
 		}
 		else
 		{
-			held.setLebenspunkte(held.getLebenspunkte()-1);
+			getHeld().erhalteSchaden(1);
 		}
-		if(held.getLebenspunkte()<=0)
+		if(getHeld().getLebenspunkte()<=0)
 		{
 			System.out.println("Das Spiel ist nun vorbei. Der Held hat verloren!");
 			return;
 		}
 		
-		if(monster.lebenspunkte<=0)
+		if(getMonster().getLebenspunkte()<=0)
 		{
 			System.out.println("Das Spiel ist nun vorbei. Das Monster hat verloren!");
 			return;
 		}
+	}
+
+	public Held getHeld() {
+		return held;
+	}
+
+	public void setHeld(Held held) {
+		this.held = held;
+	}
+
+	public Monster getMonster() {
+		return monster;
+	}
+
+	public void setMonster(Monster monster) {
+		this.monster = monster;
 	}
 }

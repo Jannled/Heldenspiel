@@ -1,6 +1,6 @@
-package com.github.jannled.heldenspiel;
+package com.github.jannled.heldenspiel.item;
 
-public class Waffe 
+public abstract class Waffe 
 {
 	int schaden;
 	

@@ -1,4 +1,4 @@
-package com.github.jannled.heldenspiel;
+package com.github.jannled.heldenspiel.window;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -6,13 +6,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.github.jannled.heldenspiel.Spiel;
+
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 
 public class WindowManager
 {
 	Spiel spiel = new Spiel();
-	Canvas canvas = new Canvas(spiel.kampfregel);
+	Canvas canvas = new Canvas(spiel.getKampfregel());
 	private JFrame frame;
 
 	/**
@@ -34,7 +37,8 @@ public class WindowManager
 	/**
 	 * Create the application.
 	 */
-	public WindowManager() {
+	public WindowManager() 
+	{
 		initialize();
 		frame.pack();
 	}
@@ -54,7 +58,7 @@ public class WindowManager
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				spiel.kampfregel.kampf();
+				spiel.getKampfregel().kampf();
 				canvas.repaint();
 			}
 		});
@@ -63,4 +67,8 @@ public class WindowManager
 		panel.add(canvas);
 	}
 
+	public JFrame getWindow()
+	{
+		return frame;
+	}
 }
